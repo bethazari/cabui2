@@ -1,0 +1,75 @@
+{
+  "name": "cabui2",
+  "version": "1.0.0",
+  "description": "cabui2",
+  "main": "index.js",
+  "author": "Alex Petrov",
+  "repository": "https://github.com/bethazari/cabui2",
+  "license": "MIT",
+  "jest": {
+    "moduleNameMapper": {
+      "^.*[.](jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "^.*[.](css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "setupFiles": [
+      "<rootDir>/__mocks__/shim.js"
+    ]
+  },
+  "dependencies": {
+    "axios": "0.17.1",
+    "classnames": "2.2.5",
+    "lodash": "4.17.4",
+    "prop-types": "15.6.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-hot-loader": "3.1.3",
+    "react-jsonschema-form": "1.0.0",
+    "react-redux": "5.0.6",
+    "react-router": "4.2.0",
+    "react-router-dom": "4.2.2",
+    "react-router-redux": "~5.0.0-alpha",
+    "react-table": "6.7.6",
+    "redbox-react": "1.5.0",
+    "redux": "3.7.2",
+    "redux-devtools-extension": "2.13.2",
+    "redux-thunk": "2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "4.16.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.6.1",
+    "axios-mock-adapter": "1.12.0",
+    "jest": "22.1.4",
+    "react-test-renderer": "16.2.0",
+    "redux-mock-store": "1.5.1",
+    "babel-core": "6.26.0",
+    "babel-eslint": "8.2.1",
+    "babel-loader": "7.1.2",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-preset-es2015": "6.24.0",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "babel-register": "6.26.0",
+    "clean-webpack-plugin": "0.1.18",
+    "html-webpack-plugin": "2.30.1",
+    "inline-manifest-webpack-plugin": "3.0.1",
+    "uglifyjs-webpack-plugin": "1.1.8",
+    "uglify-js": "3.3.9",
+    "webpack": "3.10.0",
+    "webpack-chunk-hash": "0.5.0",
+    "webpack-dev-server": "2.11.1",
+    "flow-bin": "0.64.0"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --host=0.0.0.0 --port=3000 --progress --inline --env.development",
+    "build": "webpack --progress --colors --env.development",
+    "release": "webpack --progress --colors --env.production --env.url='${SELF_URL}'",
+    "test": "ENV=test jest --watch",
+    "test_once": "ENV=test jest",
+    "test_once_cover": "ENV=test jest --coverage",
+    "flow": "flow",
+    "lint": "eslint index.js utils.js error-reporter.js src test"
+  }
+}
