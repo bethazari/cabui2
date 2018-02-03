@@ -1,0 +1,11 @@
+version: '2'
+services:
+
+  storybook:
+    build: .
+    entrypoint: npm run storybook
+    ports:
+      - "9001:9001"
+    volumes:
+      - ./src:/app/src
+      - ./.storybook:/app/.storybook

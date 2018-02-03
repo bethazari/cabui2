@@ -62,10 +62,12 @@
     "webpack": "3.10.0",
     "webpack-chunk-hash": "0.5.0",
     "webpack-dev-server": "2.11.1",
-    "flow-bin": "0.64.0"
+    "flow-bin": "0.64.0",
+    "@storybook/react": "^3.3.12"
   },
   "scripts": {
     "dev": "webpack-dev-server --host=0.0.0.0 --port=3000 --progress --inline --env.development",
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "build": "webpack --progress --colors --env.development",
     "release": "webpack --progress --colors --env.production --env.url='${SELF_URL}'",
     "test": "ENV=test jest --watch",
