@@ -14,7 +14,13 @@ const styles = theme => ({
     position: 'relative',
     width: 240,
   },
-  drawerHeader: theme.mixins.toolbar,
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+    'background-color': theme.palette.primary.main,
+  },
 });
 
 class Sidebar extends React.Component {
@@ -26,17 +32,18 @@ class Sidebar extends React.Component {
     return (
       <div>
         <Drawer
+          open={this.props.open}
           anchor="left"
-          type="permanent"
+          type="persistent"
           classes={{ paper: classes.drawer }}
         >
           <div className={classes.drawerHeader}>
-            <a href="https://www.creative-tim.com">
+            <a href="https://coin32.com/">
               <div>
-                <img src="http://" alt="logo" />
+                <img src="https://cab.coin32.com/img/coin32logo-00cb4660ae.png" alt="logo" />
               </div>
-              test
             </a>
+
           </div>
           <Divider />
           <List>
@@ -61,6 +68,7 @@ class Sidebar extends React.Component {
 
 Sidebar.propTypes = {
   classes: PropTypes.object.isRequired,
+  open: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(Sidebar);
