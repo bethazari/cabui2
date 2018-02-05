@@ -26,9 +26,7 @@ const styles = theme => ({
 });
 
 class RootContainer extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.require,
-  }
+  some(){}
 
   render() {
     const { classes } = this.props;
@@ -37,11 +35,22 @@ class RootContainer extends React.Component {
         <Sidebar />
         <Header />
         <div className={classes.content}>
-          <Typography>{'You think water moves fast? You should see ice.You think water moves fast? You should see ice.'}</Typography>
+          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
+          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
+          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
+          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
+          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
+          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
+          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
+          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
         </div>
       </div>
     );
   }
 }
+
+RootContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(RootContainer);

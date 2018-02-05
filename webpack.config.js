@@ -1,5 +1,5 @@
 
-// # TODO: ESLint, Flow
+// # TODO: ESLint, Flow, normalize.css
 
 const path = require('path');
 const webpack = require('webpack');

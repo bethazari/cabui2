@@ -17,9 +17,7 @@ const styles = {
 };
 
 class Header extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.require,
-  }
+  some() {}
 
   render() {
     const { classes } = this.props;
@@ -37,5 +35,9 @@ class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Header);

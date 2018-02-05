@@ -5,23 +5,20 @@ import PropTypes from 'prop-types';
 
 // material-ui imports
 import {
-  withStyles, Drawer, Hidden, List, ListItem, ListItemIcon, ListItemText,
+  withStyles, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText,
 } from 'material-ui';
-import InboxIcon from 'material-ui-icons/Inbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
 
-const styles = {
+const styles = theme => ({
   drawer: {
     position: 'relative',
-    height: '100%',
     width: 240,
   },
-};
+  drawerHeader: theme.mixins.toolbar,
+});
 
 class Sidebar extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.require,
-  }
+  some() {}
 
   render() {
     const { classes } = this.props;
@@ -31,9 +28,9 @@ class Sidebar extends React.Component {
         <Drawer
           anchor="left"
           type="permanent"
-          classes={{paper: classes.drawer}}
+          classes={{ paper: classes.drawer }}
         >
-          <div>
+          <div className={classes.drawerHeader}>
             <a href="https://www.creative-tim.com">
               <div>
                 <img src="http://" alt="logo" />
@@ -41,7 +38,16 @@ class Sidebar extends React.Component {
               test
             </a>
           </div>
+          <Divider />
           <List>
+            <ListItem>
+              <ListItemIcon><DraftsIcon /></ListItemIcon>
+              <ListItemText primary="down" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon><DraftsIcon /></ListItemIcon>
+              <ListItemText primary="down" />
+            </ListItem>
             <ListItem>
               <ListItemIcon><DraftsIcon /></ListItemIcon>
               <ListItemText primary="down" />
@@ -52,5 +58,9 @@ class Sidebar extends React.Component {
     );
   }
 }
+
+Sidebar.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Sidebar);
