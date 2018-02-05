@@ -2,6 +2,7 @@
 // react imports
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 // material-ui imports
 import {
@@ -13,6 +14,10 @@ const styles = theme => ({
   drawer: {
     position: 'relative',
     width: 240,
+  },
+  miniDrawer: {
+    width: 60,
+    overflowX: 'hidden',
   },
   drawerHeader: {
     display: 'flex',
@@ -32,18 +37,18 @@ class Sidebar extends React.Component {
     return (
       <div>
         <Drawer
-          open={this.props.open}
           anchor="left"
-          type="persistent"
-          classes={{ paper: classes.drawer }}
+          type="permanent"
+          classes={{ paper: classnames(classes.drawer, !this.props.open && classes.miniDrawer) }}
         >
           <div className={classes.drawerHeader}>
             <a href="https://coin32.com/">
               <div>
-                <img src="https://cab.coin32.com/img/coin32logo-00cb4660ae.png" alt="logo" />
+                { this.props.open ?
+                  <img src="https://cab.coin32.com/img/coin32logo-00cb4660ae.png" alt="logo" /> :
+                  <img src="https://cab.coin32.com/img/coin32logo-00cb4660ae.png" alt="logo" width="40" /> }
               </div>
             </a>
-
           </div>
           <Divider />
           <List>

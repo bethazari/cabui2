@@ -2,6 +2,7 @@
 // react imports
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 // material-ui imports
 import {
@@ -16,6 +17,11 @@ const styles = {
     width: 'calc(100% - 240px)',
     marginLeft: 240,
   },
+  appBarFullWidth: {
+    position: 'absolute',
+    width: 'calc(100% - 60px)',
+    marginLeft: 60,
+  },
 };
 
 class Header extends React.Component {
@@ -26,7 +32,7 @@ class Header extends React.Component {
 
     return (
       <div>
-        <AppBar className={classes.appBar}>
+        <AppBar className={classnames(classes.appBar, !this.props.isSidebarOpened && classes.appBarFullWidth)}>
           <Toolbar>
             <IconButton
               color="inherit"
