@@ -8,6 +8,7 @@ import { withStyles, Typography } from 'material-ui';
 
 // widget imports
 import Layout from '../widgets/layout';
+import LoginForm from '../widgets/login-form';
 
 const styles = theme => ({
   frame: {
@@ -25,6 +26,10 @@ const styles = theme => ({
 });
 
 class MainContainer extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+  }
+
   some(){}
 
   render() {
@@ -33,22 +38,12 @@ class MainContainer extends React.Component {
       <div className={classes.frame}>
         <Layout />
         <div className={classes.content}>
-          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
-          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
-          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
-          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
-          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
-          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
-          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
-          <Typography>You think water moves fast? You should see ice.You think water moves fast? You should see ice.</Typography>
+          <Typography>Вам нужно пройти авторизацию для входа в личный кабинет Coin32.</Typography>
+          <LoginForm />
         </div>
       </div>
     );
   }
 }
-
-MainContainer.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(MainContainer);

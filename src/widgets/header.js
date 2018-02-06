@@ -25,6 +25,12 @@ const styles = {
 };
 
 class Header extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    switchSidebar: PropTypes.func.isRequired,
+    isSidebarOpened: PropTypes.bool.isRequired,
+  }
+
   some() {}
 
   render() {
@@ -49,11 +55,5 @@ class Header extends React.Component {
     );
   }
 }
-
-Header.propTypes = {
-  classes: PropTypes.object.isRequired,
-  switchSidebar: PropTypes.func.isRequired,
-  isSidebarOpened: PropTypes.bool.isRequired,
-};
 
 export default withStyles(styles)(Header);

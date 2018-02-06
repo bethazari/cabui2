@@ -29,6 +29,11 @@ const styles = theme => ({
 });
 
 class Sidebar extends React.Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    open: PropTypes.bool.isRequired,
+  }
+
   some() {}
 
   render() {
@@ -70,10 +75,5 @@ class Sidebar extends React.Component {
     );
   }
 }
-
-Sidebar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  open: PropTypes.bool.isRequired,
-};
 
 export default withStyles(styles)(Sidebar);
