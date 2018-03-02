@@ -26,8 +26,10 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      loginData: {
+        email: '',
+        password: '',
+      },
     };
   }
 
@@ -53,17 +55,29 @@ class LoginForm extends React.Component {
       });
   }
 
+  handleEnter(keyCode) {
+    if (keyCode === 13) {
+      this.login();
+    }
+  }
+
   handleChangeEmail(email) {
     this.setState(prevState => ({
       ...prevState,
-      email,
+      loginData: {
+        ...prevState.loginData,
+        email,
+      },
     }));
   }
 
   handleChangePassword(password) {
     this.setState(prevState => ({
       ...prevState,
-      password,
+      loginData: {
+        ...prevState.loginData,
+        password,
+      },
     }));
   }
 
@@ -80,6 +94,7 @@ class LoginForm extends React.Component {
             error={!!this.state.emailError}
             helperText={this.state.emailError}
             value={this.state.email}
+            onKeyUp={event => this.handleEnter(event.keyCode)}
             onChange={event => this.handleChangeEmail(event.target.value)}
             margin="normal"
           />
@@ -92,6 +107,7 @@ class LoginForm extends React.Component {
             error={!!this.state.passwordError}
             helperText={this.state.passwordError}
             value={this.state.password}
+            onKeyUp={event => this.handleEnter(event.keyCode)}
             onChange={event => this.handleChangePassword(event.target.value)}
             margin="normal"
           />
