@@ -4,6 +4,7 @@ import axios from 'axios';
 
 // react imports
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // material-ui imports
@@ -21,6 +22,8 @@ const styles = theme => ({
 class LoginForm extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    successLoginCallback: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -34,25 +37,36 @@ class LoginForm extends React.Component {
   }
 
   login = () => {
-    this.setState(prevState => ({
-      ...prevState,
-      isAuthenticating: true,
-    }));
-    axios.post(
-      '/api/2/common/login',
-      this.state.loginData,
-      {
-        xsrfCookieName: 'csrftoken',
-        xsrfHeaderName: 'X-CSRFToken',
-        withCredentials: true,
-      },
-    )
-      .then(() => {
-        console.log('authenticated');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (!this.state.isAuthenticating) {
+      this.setState(prevState => ({
+        ...prevState,
+        isAuthenticating: true,
+      }));
+      axios.post(
+        '/api/2/common/login',
+        this.state.loginData,
+        {
+          xsrfCookieName: 'csrftoken',
+          xsrfHeaderName: 'X-CSRFToken',
+          withCredentials: true,
+        },
+      )
+        .then(() => {
+          console.log('authenticated');
+          this.setState(prevState => ({
+            ...prevState,
+            isAuthenticating: false,
+          }));
+          this.props.successLoginCallback();
+        })
+        .catch((error) => {        
+          console.error(error);
+          this.setState(prevState => ({
+            ...prevState,
+            isAuthenticating: false,
+          }));
+        });
+    }
   }
 
   handleEnter(keyCode) {
@@ -82,9 +96,9 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, isAuthenticated } = this.props;
 
-    return (
+    return isAuthenticated ? <Redirect to="/channels" /> : (
       <form autoComplete="off">
         <div>
           <TextField

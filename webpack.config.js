@@ -73,6 +73,8 @@ module.exports = (environment = {}) => {
         '/api/2/*': {
           target: 'http://default.coin32-cab.demo.al.re/',
           changeOrigin: true,
+          // # TODO: погуглить почему не работает
+          cookieDomainRewrite: "localhost",
         },
       },
     };

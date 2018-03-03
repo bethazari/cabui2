@@ -1,6 +1,7 @@
 
 // react imports
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -8,7 +9,9 @@ import classnames from 'classnames';
 import {
   withStyles, Drawer, Divider, List, ListItem, ListItemIcon, ListItemText,
 } from 'material-ui';
-import DraftsIcon from 'material-ui-icons/Drafts';
+import SettingsIcon from 'material-ui-icons/Settings';
+import HomeIcon from 'material-ui-icons/Home';
+import LinkIcon from 'material-ui-icons/Link';
 
 const styles = theme => ({
   drawer: {
@@ -57,18 +60,24 @@ class Sidebar extends React.Component {
           </div>
           <Divider />
           <List>
-            <ListItem>
-              <ListItemIcon><DraftsIcon /></ListItemIcon>
-              <ListItemText primary="down" />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon><DraftsIcon /></ListItemIcon>
-              <ListItemText primary="down" />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon><DraftsIcon /></ListItemIcon>
-              <ListItemText primary="down" />
-            </ListItem>
+            <Link to="/offers">            
+              <ListItem>              
+                <ListItemIcon><HomeIcon /></ListItemIcon>              
+                <ListItemText primary="Offers" />              
+              </ListItem>
+            </Link>
+            <Link to="/channels">
+              <ListItem>
+                <ListItemIcon><LinkIcon /></ListItemIcon>
+                <ListItemText primary="Channels" />
+              </ListItem>
+            </Link>
+            <Link to="/settings">
+              <ListItem>
+                <ListItemIcon><SettingsIcon /></ListItemIcon>
+                <ListItemText primary="Settings" />
+              </ListItem>
+            </Link>
           </List>
         </Drawer>
       </div>
