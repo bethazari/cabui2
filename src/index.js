@@ -3,18 +3,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 // utils imports
 import errorReporter from './error-reporter';
 
 // components imports
-import RootContainer from './root-container';
+import MainContainer from './main/container';
 
 
 const render = () => {
   ReactDOM.render(
     <AppContainer errorReporter={errorReporter}>
-      <RootContainer />
+      <Router>
+        <Route path="/" component={MainContainer} />
+      </Router>
     </AppContainer>,
     document.getElementById('root'),
   );
