@@ -59,13 +59,13 @@ class LoginForm extends React.Component {
           }));
           this.props.successLoginCallback();
         })
-        .catch((error) => {        
+        .catch((error) => {
           console.error(error);
           this.setState(prevState => ({
             ...prevState,
             isAuthenticating: false,
-          emailError: error.response.data.email[0],
-          passwordError: error.response.data.password[0],
+            emailError: error.response.data.email[0],
+            passwordError: error.response.data.password[0],
           }));
         });
     }
