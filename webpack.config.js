@@ -74,12 +74,13 @@ module.exports = (environment = {}) => {
           target: 'http://default.coin32-cab.demo.al.re/',
           changeOrigin: true,
           // # TODO: погуглить почему не работает
-          cookieDomainRewrite: "localhost",
+          cookieDomainRewrite: 'localhost',
         },
       },
     };
-    // # TODO: в случае сильного замедления скорости сборки сделать переключение через опции запуска dev-сервера:
-    // разрабтаываем - юзаем eval-source-map, дебажим (в хроме) - юзаем source-map
+    // # TODO: в случае сильного замедления скорости сборки сделать переключение через опции
+    // запуска dev-сервера: разрабтаываем - юзаем eval-source-map, дебажим (в хроме)
+    // - юзаем source-map
     config.devtool = 'source-map';
 
     config.plugins = config.plugins.concat([

@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 
 // material-ui imports
 import { withStyles, Typography } from 'material-ui';
+import { CircularProgress } from 'material-ui/Progress';
 
 // widget imports
 import Layout from '../widgets/layout';
@@ -42,6 +43,7 @@ class MainContainer extends React.Component {
     super(props);
     this.state = {
       isAuthenticated: false,
+      isLoading: true,
     };
   }
 
@@ -54,6 +56,7 @@ class MainContainer extends React.Component {
         this.setState(prevState => ({
           ...prevState,
           isAuthenticated: true,
+          isLoading: false,
         }));
       });
   }
@@ -71,23 +74,29 @@ class MainContainer extends React.Component {
       <div className={classes.frame}>
         <Layout />
         <div className={classes.content}>
-          <Route
-            path="/login"
-            component={() => (
-              <div>
-                <Typography>
-                  Вам нужно пройти авторизацию для входа в личный кабинет Coin32.
-                </Typography>
-                <LoginForm
-                  isAuthenticated={this.state.isAuthenticated} 
-                  successLoginCallback={this.successLoginCallback}
-                />
-              </div>
-            )}
-          />
-          <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/offers" component={() => <div>Здесь будет офферволл</div>} />
-          <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/channels" component={ChannelsListContainer} />
-          <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/settings" component={() => <div>Здесь будут настройки</div>} />
+          {this.state.isLoading ?
+            <CircularProgress /> :
+            <div>
+              <Route
+                path="/login"
+                component={() => (
+                  <div>
+                    <Typography>
+                      Вам нужно пройти авторизацию для входа в личный кабинет Coin32.
+                    </Typography>
+                    <LoginForm
+                      isAuthenticated={this.state.isAuthenticated} 
+                      successLoginCallback={this.successLoginCallback}
+                    />
+                  </div>
+                )}
+              />
+              <PrivateRoute isAuthenticated={this.state.isAuthenticated} exact path="/" component={() => <div>Здесь будет офферволл</div>} />
+              <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/offers" component={() => <div>Здесь будет офферволл</div>} />
+              <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/channels" component={ChannelsListContainer} />
+              <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/settings" component={() => <div>Здесь будут настройки</div>} />
+            </div>
+          }
         </div>
       </div>
     );
