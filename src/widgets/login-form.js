@@ -64,6 +64,8 @@ class LoginForm extends React.Component {
           this.setState(prevState => ({
             ...prevState,
             isAuthenticating: false,
+          emailError: error.response.data.email[0],
+          passwordError: error.response.data.password[0],
           }));
         });
     }
