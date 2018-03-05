@@ -31,14 +31,15 @@ class Header extends React.Component {
     isSidebarOpened: PropTypes.bool.isRequired,
   }
 
-  some() {}
-
   render() {
     const { classes } = this.props;
 
     return (
       <div>
-        <AppBar className={classnames(classes.appBar, !this.props.isSidebarOpened && classes.appBarFullWidth)}>
+        <AppBar className={classnames(
+          classes.appBar,
+          !this.props.isSidebarOpened && classes.appBarFullWidth
+        )}>
           <Toolbar>
             <IconButton
               color="inherit"

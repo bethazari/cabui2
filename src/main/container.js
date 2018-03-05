@@ -17,7 +17,7 @@ import LoginForm from '../widgets/login-form';
 import PrivateRoute from '../widgets/private-route';
 
 // components imports
-import ChannelsListContainer from './channels-list/container'
+import ChannelsListContainer from './channels-list/container';
 
 const styles = theme => ({
   frame: {
@@ -90,7 +90,7 @@ class MainContainer extends React.Component {
                       Вам нужно пройти авторизацию для входа в личный кабинет Coin32.
                     </Typography>
                     <LoginForm
-                      isAuthenticated={this.state.isAuthenticated} 
+                      isAuthenticated={this.state.isAuthenticated}
                       successLoginCallback={this.successLoginCallback}
                     />
                   </div>

@@ -7,12 +7,12 @@ import Sidebar from '../widgets/sidebar';
 import Header from '../widgets/header';
 
 class Layout extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       isSidebarOpened: true,
-    }
-  };
+    };
+  }
 
   switchSidebar = () => {
     this.setState(prevState => ({
@@ -25,8 +25,8 @@ class Layout extends React.Component {
     return (
       <div>
         <Sidebar open={this.state.isSidebarOpened} />
-        <Header 
-          switchSidebar={this.switchSidebar}          
+        <Header
+          switchSidebar={this.switchSidebar}
           isSidebarOpened={this.state.isSidebarOpened}
         />
       </div>

@@ -72,6 +72,6 @@
     "test_once": "ENV=test jest",
     "test_once_cover": "ENV=test jest --coverage",
     "flow": "flow",
-    "lint": "eslint index.js utils.js error-reporter.js src test"
+    "lint": "eslint webpack.config.js src"
   }
 }

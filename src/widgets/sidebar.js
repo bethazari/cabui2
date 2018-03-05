@@ -37,8 +37,6 @@ class Sidebar extends React.Component {
     open: PropTypes.bool.isRequired,
   }
 
-  some() {}
-
   render() {
     const { classes } = this.props;
 
@@ -60,10 +58,10 @@ class Sidebar extends React.Component {
           </div>
           <Divider />
           <List>
-            <Link to="/offers">            
-              <ListItem>              
-                <ListItemIcon><HomeIcon /></ListItemIcon>              
-                <ListItemText primary="Offers" />              
+            <Link to="/offers">
+              <ListItem>
+                <ListItemIcon><HomeIcon /></ListItemIcon>
+                <ListItemText primary="Offers" />
               </ListItem>
             </Link>
             <Link to="/channels">
