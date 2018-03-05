@@ -38,23 +38,24 @@ class MainContainer extends React.Component {
     classes: PropTypes.object.isRequired,
   }
 
-  componentDidMount() {
-    axios.get('/api/2/common/auth/', {
-      withCredentials: true,
-    })
-      .then((data) => {
-        this.setState(prevState => ({
-          ...prevState,
-          isAuthenticated: true
-        }));
-      });
-  }
-
   constructor(props) {
     super(props);
     this.state = {
       isAuthenticated: false,
     };
+  }
+
+  componentDidMount() {
+    axios.get('/api/2/common/auth/', {
+      withCredentials: true,
+    })
+      .then((data) => {
+        console.log(data);
+        this.setState(prevState => ({
+          ...prevState,
+          isAuthenticated: true,
+        }));
+      });
   }
 
   successLoginCallback = () => {
@@ -69,18 +70,25 @@ class MainContainer extends React.Component {
     return (
       <div className={classes.frame}>
         <Layout />
-        <div className={classes.content}>          
-          <Route path="/login" component={() => <div>
-            <Typography>Вам нужно пройти авторизацию для входа в личный кабинет Coin32.</Typography>
-            <LoginForm 
-              isAuthenticated={this.state.isAuthenticated} 
-              successLoginCallback={this.successLoginCallback}
-            />
-          </div>} />
+        <div className={classes.content}>
+          <Route
+            path="/login"
+            component={() => (
+              <div>
+                <Typography>
+                  Вам нужно пройти авторизацию для входа в личный кабинет Coin32.
+                </Typography>
+                <LoginForm
+                  isAuthenticated={this.state.isAuthenticated} 
+                  successLoginCallback={this.successLoginCallback}
+                />
+              </div>
+            )}
+          />
           <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/offers" component={() => <div>Здесь будет офферволл</div>} />
           <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/channels" component={ChannelsListContainer} />
           <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/settings" component={() => <div>Здесь будут настройки</div>} />
-        </div>                
+        </div>
       </div>
     );
   }
