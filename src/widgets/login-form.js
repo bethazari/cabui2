@@ -9,8 +9,9 @@ import PropTypes from 'prop-types';
 
 // material-ui imports
 import {
-  withStyles, Button, TextField,
+  withStyles, Button, TextField, Typography,
 } from 'material-ui';
+
 import SendIcon from 'material-ui-icons/Send';
 
 const styles = theme => ({
@@ -97,6 +98,9 @@ class LoginForm extends React.Component {
 
     return isAuthenticated ? <Redirect to="/channels" /> : (
       <form autoComplete="off">
+        <Typography>
+          Вам нужно пройти авторизацию для входа в личный кабинет Coin32.
+        </Typography>
         <div>
           <TextField
             label="Введите email..."

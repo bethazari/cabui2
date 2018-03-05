@@ -28,7 +28,7 @@ render();
 // # TODO low: посмотреть как это, redbox и console.log|error работают в release сборке
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
-  module.hot.accept('./root-container', () => {
+  module.hot.accept('./main/container', () => {
     render();
   });
 }
