@@ -45,11 +45,6 @@ class LoginForm extends React.Component {
       axios.post(
         '/api/2/common/login',
         this.state.loginData,
-        {
-          xsrfCookieName: 'csrftoken',
-          xsrfHeaderName: 'X-CSRFToken',
-          withCredentials: true,
-        },
       )
         .then(() => {
           console.log('authenticated');

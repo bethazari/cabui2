@@ -48,14 +48,19 @@ class MainContainer extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/2/common/auth/', {
-      withCredentials: true,
-    })
+    axios.get('/api/2/common/auth/')
       .then((data) => {
         console.log(data);
         this.setState(prevState => ({
           ...prevState,
           isAuthenticated: true,
+          isLoading: false,
+        }));
+      })
+      .catch((error) => {
+        console.error(error);
+        this.setState(prevState => ({
+          ...prevState,
           isLoading: false,
         }));
       });
