@@ -14,6 +14,7 @@ import {
 
 import SendIcon from 'material-ui-icons/Send';
 
+
 const styles = theme => ({
   rightIcon: {
     marginLeft: theme.spacing.unit,

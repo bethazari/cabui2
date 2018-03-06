@@ -11,6 +11,7 @@ import { CircularProgress } from 'material-ui/Progress';
 import Sidebar from '../widgets/sidebar';
 import Header from '../widgets/header';
 
+
 const styles = theme => ({
   frame: {
     position: 'relative',

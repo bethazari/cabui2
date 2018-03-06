@@ -14,6 +14,7 @@ import PrivateRoute from '../widgets/private-route';
 // components imports
 import ChannelsListContainer from './channels-list/container';
 
+
 class MainContainer extends React.Component {
   constructor(props) {
     super(props);

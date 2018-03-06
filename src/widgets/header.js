@@ -11,6 +11,7 @@ import {
 import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 
+
 const styles = {
   appBar: {
     position: 'absolute',
@@ -36,10 +37,12 @@ class Header extends React.Component {
 
     return (
       <div>
-        <AppBar className={classnames(
-          classes.appBar,
-          !this.props.isSidebarOpened && classes.appBarFullWidth
-        )}>
+        <AppBar
+          className={classnames(
+            classes.appBar,
+            !this.props.isSidebarOpened && classes.appBarFullWidth,
+          )}
+        >
           <Toolbar>
             <IconButton
               color="inherit"
