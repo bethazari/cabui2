@@ -51,7 +51,7 @@ class Header extends React.Component {
               { this.props.isSidebarOpened ? <ChevronLeftIcon /> : <MenuIcon /> }
             </IconButton>
             <Typography type="title" color="inherit" noWrap>
-              Permanent drawer
+              Control Panel
             </Typography>
           </Toolbar>
         </AppBar>
