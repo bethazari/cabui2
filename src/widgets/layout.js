@@ -32,6 +32,8 @@ class Layout extends React.Component {
     classes: PropTypes.object.isRequired,
     isLoading: PropTypes.bool.isRequired,
     children: PropTypes.array.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    logout: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -56,6 +58,8 @@ class Layout extends React.Component {
         <Header
           switchSidebar={this.switchSidebar}
           isSidebarOpened={this.state.isSidebarOpened}
+          isAuthenticated={this.props.isAuthenticated}
+          logout={this.props.logout}
         />
         <div className={classes.content}>
           {this.props.isLoading ?

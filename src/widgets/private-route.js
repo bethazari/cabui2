@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 class PrivateRoute extends React.Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    component: PropTypes.object.isRequired,
+    component: PropTypes.func.isRequired,
   }
 
   render() {

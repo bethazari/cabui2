@@ -50,9 +50,17 @@ class MainContainer extends React.Component {
     }));
   }
 
+  logout = () => {
+
+  }
+
   render() {
     return (
-      <Layout isLoading={this.state.isLoading}>
+      <Layout
+        isLoading={this.state.isLoading}
+        isAuthenticated={this.state.isAuthenticated}
+        logout={this.logout}
+      >
         <Route
           path="/login"
           component={() => (
