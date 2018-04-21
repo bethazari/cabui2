@@ -4,76 +4,78 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const ChunkHashPlugin = require('webpack-chunk-hash');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const InlineManifestPlugin = require('inline-manifest-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+//const ChunkHashPlugin = require('webpack-chunk-hash');
+//const CleanWebpackPlugin = require('clean-webpack-plugin');
+//const HtmlWebpackPlugin = require('html-webpack-plugin');
+//const InlineManifestPlugin = require('inline-manifest-webpack-plugin');
+//const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (environment = {}) => {
   const config = {
 
-    entry: [
-      'react-hot-loader/patch',
-      './src/index',
-    ],
-    target: 'web',
-    output: {
-      path: `${__dirname}/dist`,
-      filename: environment.production ? 'js/[name].[chunkhash].js' : '[name].js',
-    },
+    // entry: [
+    //   'react-hot-loader/patch',
+    //   './src/index',
+    // ],
+    // output: {
+    //   path: `${__dirname}/dist`,
+    //   filename: environment.production ? 'js/[name].[chunkhash].js' : '[name].js',
+    // },
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.jsx?$/,
           include: path.join(__dirname, 'src'),
           loaders: ['babel-loader'],
         },
       ],
     },
-    plugins: [
-      new CleanWebpackPlugin(['dist']),
-      new webpack.EnvironmentPlugin({
-        NODE_ENV: environment.production ? 'production' : 'development',
-        SELF_URL: environment.url || 'http://localhost:3002',
-      }),
-      new HtmlWebpackPlugin({
-        title: 'Appdater Admin',
-        template: 'src/index.ejs',
-        filename: 'index.html',
-      }),
-    ],
-    watchOptions: {
-      poll: true,
-    },
+    // plugins: [
+    //   new CleanWebpackPlugin(['dist']),
+    //   new webpack.EnvironmentPlugin({
+    //     NODE_ENV: environment.production ? 'production' : 'development',
+    //     SELF_URL: environment.url || 'http://localhost:3002',
+    //   }),
+    //   new HtmlWebpackPlugin({
+    //     title: 'Appdater Admin',
+    //     template: 'src/index.ejs',
+    //     filename: 'index.html',
+    //   }),
+    // ],
+    // watchOptions: {
+    //   poll: true,
+    // },
   };
 
-  if (environment.production) {
-    config.output.publicPath = '/admin/';
-
-    config.plugins = config.plugins.concat([
-      new UglifyJSPlugin(),
-      new ChunkHashPlugin(),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'manifest',
-      }),
-      new InlineManifestPlugin({
-        name: 'webpackManifest',
-      }),
-    ]);
-  } else {
+  // if (environment.production) {
+  //   config.plugins = config.plugins.concat([
+  //     new UglifyJSPlugin(),
+  //     new ChunkHashPlugin(),
+  //     new webpack.optimize.CommonsChunkPlugin({
+  //       name: 'vendor',
+  //       minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
+  //     }),
+  //     new webpack.optimize.CommonsChunkPlugin({
+  //       name: 'manifest',
+  //     }),
+  //     new InlineManifestPlugin({
+  //       name: 'webpackManifest',
+  //     }),
+  //   ]);
+  // }
+  console.log(111);
+  if (environment.development) {
+    console.log(213);
     config.devServer = {
-      overlay: true,
+      host: '0.0.0.0',
+      port: 3000,
+  //     inline: true,
+  //     overlay: true,
       hot: true,
       proxy: {
         '/api/2/*': {
           target: 'http://default.coin32-cab.demo.al.re/',
           changeOrigin: true,
-          // # TODO: погуглить почему не работает
           cookieDomainRewrite: 'localhost',
         },
       },
@@ -81,12 +83,11 @@ module.exports = (environment = {}) => {
     // # TODO: в случае сильного замедления скорости сборки сделать переключение через опции
     // запуска dev-сервера: разрабтаываем - юзаем eval-source-map, дебажим (в хроме)
     // - юзаем source-map
-    config.devtool = 'source-map';
+  //   config.devtool = 'source-map';
 
-    config.plugins = config.plugins.concat([
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin(),
-    ]);
+  //   config.plugins = config.plugins.concat([
+  //     new webpack.HotModuleReplacementPlugin(),
+  //   ]);
   }
 
   return config;

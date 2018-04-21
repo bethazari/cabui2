@@ -31,6 +31,7 @@ class ChannelsListContainer extends React.Component {
   render() {
     return (
       <div>
+        <span>Test234</span>
         {this.state.isLoading ?
           <CircularProgress /> :
           JSON.stringify(this.state.channels)
