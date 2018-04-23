@@ -4,11 +4,10 @@
 const path = require('path');
 const webpack = require('webpack');
 
-// const ChunkHashPlugin = require('webpack-chunk-hash');
+const ChunkHashPlugin = require('webpack-chunk-hash');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const InlineManifestPlugin = require('inline-manifest-webpack-plugin');
-// const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const InlineManifestPlugin = require('inline-manifest-webpack-plugin');
 
 module.exports = (env, argv) => {
   const config = {
@@ -47,27 +46,25 @@ module.exports = (env, argv) => {
     // },
   };
 
-  // if (environment.production) {
-  //   config.plugins = config.plugins.concat([
-  //     new UglifyJSPlugin(),
-  //     new ChunkHashPlugin(),
-  //     new webpack.optimize.CommonsChunkPlugin({
-  //       name: 'vendor',
-  //       minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
-  //     }),
-  //     new webpack.optimize.CommonsChunkPlugin({
-  //       name: 'manifest',
-  //     }),
-  //     new InlineManifestPlugin({
-  //       name: 'webpackManifest',
-  //     }),
-  //   ]);
-  // }
+  if (argv.mode === 'production') {
+    config.plugins = config.plugins.concat([
+      //new ChunkHashPlugin(),
+      //new webpack.optimize.CommonsChunkPlugin({
+      //  name: 'vendor',
+      //  minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
+      //}),
+      //new webpack.optimize.CommonsChunkPlugin({
+      //  name: 'manifest',
+      //}),
+      //new InlineManifestPlugin({
+      //  name: 'webpackManifest',
+      //}),
+    ]);
+  }
   if (argv.mode === 'development') {
     config.devServer = {
       host: '0.0.0.0',
       port: 3000,
-  //     inline: true,
   //     overlay: true,
       hot: true,
       proxy: {
@@ -81,7 +78,7 @@ module.exports = (env, argv) => {
     // # TODO: в случае сильного замедления скорости сборки сделать переключение через опции
     // запуска dev-сервера: разрабтаываем - юзаем eval-source-map, дебажим (в хроме)
     // - юзаем source-map
-  //   config.devtool = 'source-map';
+    config.devtool = 'source-map';
 
     config.plugins = config.plugins.concat([
       new webpack.HotModuleReplacementPlugin(),
