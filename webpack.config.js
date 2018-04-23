@@ -2,7 +2,7 @@
 // # TODO: ESLint, Flow, normalize.css
 
 const path = require('path');
-// const webpack = require('webpack');
+const webpack = require('webpack');
 
 // const ChunkHashPlugin = require('webpack-chunk-hash');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -83,9 +83,9 @@ module.exports = (env, argv) => {
     // - юзаем source-map
   //   config.devtool = 'source-map';
 
-  //   config.plugins = config.plugins.concat([
-  //     new webpack.HotModuleReplacementPlugin(),
-  //   ]);
+    config.plugins = config.plugins.concat([
+      new webpack.HotModuleReplacementPlugin(),
+    ]);
   }
 
   return config;
