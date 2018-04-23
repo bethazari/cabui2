@@ -2,46 +2,46 @@
 // # TODO: ESLint, Flow, normalize.css
 
 const path = require('path');
-const webpack = require('webpack');
+// const webpack = require('webpack');
 
-//const ChunkHashPlugin = require('webpack-chunk-hash');
-//const CleanWebpackPlugin = require('clean-webpack-plugin');
-//const HtmlWebpackPlugin = require('html-webpack-plugin');
-//const InlineManifestPlugin = require('inline-manifest-webpack-plugin');
-//const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+// const ChunkHashPlugin = require('webpack-chunk-hash');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const InlineManifestPlugin = require('inline-manifest-webpack-plugin');
+// const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-module.exports = (environment = {}) => {
+module.exports = (env, argv) => {
   const config = {
 
-    // entry: [
+    //entry: [
     //   'react-hot-loader/patch',
-    //   './src/index',
-    // ],
-    // output: {
-    //   path: `${__dirname}/dist`,
+    //  './src/index',
+    //],
+    output: {
+      path: path.resolve(__dirname, 'dist'),
     //   filename: environment.production ? 'js/[name].[chunkhash].js' : '[name].js',
-    // },
+    },
     module: {
       rules: [
         {
           test: /\.jsx?$/,
-          include: path.join(__dirname, 'src'),
-          loaders: ['babel-loader'],
+          include: [path.resolve(__dirname, 'src')],
+          loader: 'babel-loader',
         },
       ],
     },
-    // plugins: [
-    //   new CleanWebpackPlugin(['dist']),
+    plugins: [
+      new CleanWebpackPlugin(['dist']),
     //   new webpack.EnvironmentPlugin({
     //     NODE_ENV: environment.production ? 'production' : 'development',
     //     SELF_URL: environment.url || 'http://localhost:3002',
     //   }),
-    //   new HtmlWebpackPlugin({
-    //     title: 'Appdater Admin',
-    //     template: 'src/index.ejs',
-    //     filename: 'index.html',
-    //   }),
-    // ],
+      new HtmlWebpackPlugin({
+        title: 'Coin32 cab UI',
+        template: 'src/index.ejs',
+        filename: 'index.html',
+      }),
+    ],
     // watchOptions: {
     //   poll: true,
     // },
@@ -63,9 +63,7 @@ module.exports = (environment = {}) => {
   //     }),
   //   ]);
   // }
-  console.log(111);
-  if (environment.development) {
-    console.log(213);
+  if (argv.mode === 'development') {
     config.devServer = {
       host: '0.0.0.0',
       port: 3000,
