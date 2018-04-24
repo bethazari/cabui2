@@ -4,10 +4,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const ChunkHashPlugin = require('webpack-chunk-hash');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const InlineManifestPlugin = require('inline-manifest-webpack-plugin');
 
 module.exports = (env, argv) => {
   const config = {
@@ -18,7 +16,7 @@ module.exports = (env, argv) => {
     //],
     output: {
       path: path.resolve(__dirname, 'dist'),
-    //   filename: environment.production ? 'js/[name].[chunkhash].js' : '[name].js',
+      filename: argv.mode === 'production' ? 'js/[name].[chunkhash].js' : '[name].js',
     },
     module: {
       rules: [
@@ -31,35 +29,26 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new CleanWebpackPlugin(['dist']),
-    //   new webpack.EnvironmentPlugin({
-    //     NODE_ENV: environment.production ? 'production' : 'development',
-    //     SELF_URL: environment.url || 'http://localhost:3002',
-    //   }),
       new HtmlWebpackPlugin({
         title: 'Coin32 cab UI',
         template: 'src/index.ejs',
         filename: 'index.html',
       }),
     ],
-    // watchOptions: {
-    //   poll: true,
-    // },
   };
 
   if (argv.mode === 'production') {
-    config.plugins = config.plugins.concat([
-      //new ChunkHashPlugin(),
-      //new webpack.optimize.CommonsChunkPlugin({
-      //  name: 'vendor',
-      //  minChunks: module => module.context && module.context.indexOf('node_modules') !== -1,
-      //}),
-      //new webpack.optimize.CommonsChunkPlugin({
-      //  name: 'manifest',
-      //}),
-      //new InlineManifestPlugin({
-      //  name: 'webpackManifest',
-      //}),
-    ]);
+    config.optimization = {
+      splitChunks: {
+        cacheGroups: {
+          vendors: {
+            chunks: 'initial',
+            test: /[\\/]node_modules[\\/]/,
+          },
+        },
+      },
+      runtimeChunk: true,
+    };
   }
   if (argv.mode === 'development') {
     config.devServer = {
