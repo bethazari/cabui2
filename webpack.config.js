@@ -54,7 +54,7 @@ module.exports = (env, argv) => {
     config.devServer = {
       host: '0.0.0.0',
       port: 3000,
-  //     overlay: true,
+      overlay: true,
       hot: true,
       proxy: {
         '/api/2/*': {
