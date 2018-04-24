@@ -1,6 +1,6 @@
 
 // # TODO: ESLint, Flow, normalize.css
-
+// # TODO: разбить на common, dev, stable (https://webpack.js.org/guides/production/); выпилить лишние зависимости
 const path = require('path');
 const webpack = require('webpack');
 
