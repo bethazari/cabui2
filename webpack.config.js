@@ -10,10 +10,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = (env, argv) => {
   const config = {
 
-    //entry: [
-    //   'react-hot-loader/patch',
-    //  './src/index',
-    //],
+    entry: [
+      './src/index',
+    ],
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: argv.mode === 'production' ? 'js/[name].[chunkhash].js' : '[name].js',
