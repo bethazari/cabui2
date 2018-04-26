@@ -13,6 +13,7 @@ import PrivateRoute from '../widgets/private-route';
 
 // components imports
 import ChannelsListContainer from './channels-list/container';
+import OffersListContainer from './offers-list/container';
 
 
 class MainContainer extends React.Component {
@@ -71,7 +72,7 @@ class MainContainer extends React.Component {
           )}
         />
         <PrivateRoute isAuthenticated={this.state.isAuthenticated} exact path="/" component={() => <div>Здесь будет офферволл</div>} />
-        <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/offers" component={() => <div>Здесь будет офферволл</div>} />
+        <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/offers" component={OffersListContainer} />
         <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/channels" component={ChannelsListContainer} />
         <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/settings" component={() => <div>Здесь будут настройки</div>} />
       </Layout>
