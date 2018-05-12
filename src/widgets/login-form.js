@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
     super(props);
     this.state = {
       loginData: {
-        email: '',
+        login: '',
         password: '',
       },
     };
@@ -45,16 +45,17 @@ class LoginForm extends React.Component {
         isAuthenticating: true,
       }));
       axios.post(
-        '/api/2/common/login',
+        '/auth/login',
         this.state.loginData,
       )
-        .then(() => {
+        .then((data) => {
           console.log('authenticated');
+          console.log(data);
           this.setState(prevState => ({
             ...prevState,
             isAuthenticating: false,
           }));
-          this.props.successLoginCallback();
+          this.props.successLoginCallback(data.data.result);
         })
         .catch((error) => {
           console.error(error);
@@ -74,12 +75,12 @@ class LoginForm extends React.Component {
     }
   }
 
-  handleChangeEmail(email) {
+  handleChangeEmail(login) {
     this.setState(prevState => ({
       ...prevState,
       loginData: {
         ...prevState.loginData,
-        email,
+        login,
       },
     }));
   }
@@ -109,7 +110,7 @@ class LoginForm extends React.Component {
             required
             error={!!this.state.emailError}
             helperText={this.state.emailError}
-            value={this.state.email}
+            value={this.state.login}
             onKeyUp={event => this.handleEnter(event.keyCode)}
             onChange={event => this.handleChangeEmail(event.target.value)}
             margin="normal"

@@ -44,10 +44,11 @@ class MainContainer extends React.Component {
       });
   }
 
-  successLoginCallback = () => {
+  successLoginCallback = (token) => {
     this.setState(prevState => ({
       ...prevState,
       isAuthenticated: true,
+      token,
     }));
   }
 
@@ -73,7 +74,7 @@ class MainContainer extends React.Component {
         />
         <PrivateRoute isAuthenticated={this.state.isAuthenticated} exact path="/" component={() => <div>Здесь будет офферволл</div>} />
         <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/offers" component={OffersListContainer} />
-        <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/channels" component={ChannelsListContainer} />
+        <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/channels" component={() => <ChannelsListContainer token={this.state.token} />} />
         <PrivateRoute isAuthenticated={this.state.isAuthenticated} path="/settings" component={() => <div>Здесь будут настройки</div>} />
       </Layout>
     );

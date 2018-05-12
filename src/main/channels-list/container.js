@@ -10,6 +10,7 @@ import { CircularProgress } from 'material-ui/Progress';
 class ChannelsListContainer extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props.token);
     this.state = {
       isLoading: true,
       channels: [],
@@ -17,7 +18,7 @@ class ChannelsListContainer extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/2/cabinet/channels/')
+    axios.get(`/users/payouts/?token=${this.props.token}`)
       .then((data) => {
         console.log(data);
         this.setState(prevState => ({

@@ -61,6 +61,12 @@ module.exports = (env, argv) => {
           changeOrigin: true,
           cookieDomainRewrite: 'localhost',
         },
+        '/auth/*': {
+          target: 'http://srv3.al.re:8121/',
+        },
+        '/users/*': {
+          target: 'http://srv3.al.re:8121/',
+        },
       },
     };
     // # TODO: в случае сильного замедления скорости сборки сделать переключение через опции
